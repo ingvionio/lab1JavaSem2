@@ -29,7 +29,7 @@ public class PostsViewController {
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String list(Model model) {
-        model.addAttribute("appName", "123");
+        model.addAttribute("appName", "Hello");
         model.addAttribute("posts", postsService.listAllPosts());
         return "list";
     }

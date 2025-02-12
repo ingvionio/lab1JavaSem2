@@ -13,6 +13,7 @@ public class PostService {
         myList.add("123");
         myList.add("12");
         myList.add("1");
+        myList.add("123450");
 
         List<Post> Posts = new ArrayList<Post>();
         for (String s : myList) {
