@@ -1,27 +1,23 @@
 package com.example.demo.controller;
 
-
-import com.example.demo.service.PostService;
+import com.example.demo.service.LikesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class PostsViewController {
+public class LikesController {
+
     @Autowired
-    PostService postsService;
+    private LikesService likesService;
 
-
-    @RequestMapping(path = "/", method = RequestMethod.GET)
-    public String list(Model model) {
-        model.addAttribute("appName", "Мой сайт");
-        model.addAttribute("posts", postsService.listAllPosts());
-
-        return "list";
+    @ResponseBody
+    @RequestMapping(path = "/post/{id}/like", method = RequestMethod.POST)
+    public String like(@PathVariable("id") Long id) {
+        int likes = likesService.like(id);
+        return "" + likes;
     }
 }
-
