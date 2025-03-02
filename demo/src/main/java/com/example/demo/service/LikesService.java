@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Post;
+import com.example.demo.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,11 +10,12 @@ public class LikesService {
 
 
     @Autowired
-    PostService postService;
+    private PostRepository postRepository;
 
     public int like (Long id){
-        Post post = postService.listAllPosts().get(id.intValue());
+        final Post post = postRepository.findById(id).get();
         post.setLikes(post.getLikes() + 1);
+        postRepository.save(post);
         return post.getLikes();
     }
 }
